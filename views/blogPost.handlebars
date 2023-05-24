@@ -1,0 +1,31 @@
+<nav>
+    <ul>
+        <a href="/"><li>Home</li></a>
+        <a href="/dashboard"><li>Dashboard</li></a>
+        {{#if loggedIn}}
+        <a id="logout"><li>Logout</li></a>
+        {{else}}
+        <a href="/login"><li >Login</li#></a>
+        {{/if}}
+    </ul>
+</nav>
+<div id="blog-post-container" data-blog-post-id={{blogPost.id}}>
+    <h2>{{blogPost.title}}</h2>
+    <p>Written by {{blogPost.user.email}}</p>
+    <p>{{blogPost.content}}</p>
+    <br>
+    <input id="comment-input">
+    <button id="submit-comment">Leave a comment</button>
+    <div id="add-comment-container"></div>
+    <div id="comment-container">
+        {{#each comments}}
+            <p id="comment">{{this.content}}</p>
+            <p>Commenter:{{this.user.email}}</p>
+            <br>
+        {{/each}}
+    </div>
+</div>
+`
+<script src="/js/login.js"></script>
+<script src="/js/logout.js"></script>
+<script src="/js/blogPost.js"></script>

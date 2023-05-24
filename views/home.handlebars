@@ -1,0 +1,22 @@
+<nav>
+    <ul>
+        <a href="/"><li>Home</li></a>
+        <a href="/dashboard"><li>Dashboard</li></a>
+        {{#if loggedIn}}
+        <a id="logout"><li>Logout</li></a>
+        {{else}}
+        <a href="/login"><li >Login</li#></a>
+        {{/if}}
+    </ul>
+</nav>
+{{#each blogPosts}}
+    <div>
+        <h2 class='blogpost-title' data-blog-post-id="{{this.id}}">{{this.title}}</h2>
+        <p>Written by {{this.user.email}}</p>
+        <p>{{this.content}}</p>
+    </div>
+{{/each}}
+
+<script src="/js/home.js"></script>
+<script src="/js/login.js"></script>
+<script src="/js/logout.js"></script>
