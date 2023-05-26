@@ -1,0 +1,42 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="navbar-nav">
+      <a class="navbar-brand" href="/"><h1>Content Cradle</h1></a>
+      <a class="nav-link" href="/dashboard"><p>Dashboard</p></a>
+      {{#if loggedIn}}
+      <a class="nav-link" id="logout"><p>Logout ({{userEmail}})</p></a>
+      {{else}}
+      <a class="nav-link" href="/login"><p>Login</p></a>
+      {{/if}}
+    </div>
+</nav>
+<div class="container-fluid">
+    <button id="create-post-btn" class="btn btn-primary margin-bottom">Create new post</button>
+    <form id ="create-post-form" class="display-none margin-bottom">
+        <div class="row mb-3">
+            <label for="" class="col-sm-2 col-form-label">Title</label>
+            <div class="col-sm-10">
+                <input class="form-control" id="title">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="" class="col-sm-2 col-form-label">Content</label>
+            <div class="col-sm-10">
+                <textarea rows="18"class="form-control" id="content"></textarea>
+            </div>
+        </div>
+        <button class="btn btn-primary" id='submit'>Submit</button>
+    </form>
+    <ul class="list-group">
+        {{#each blogPosts}}
+        <li class="list-group-item list-group-item-dark border-3 border border-primary" >
+            <h2 class='blogpost-title on-hover-blue' data-blog-post-id="{{this.id}}">{{this.title}}</h2>
+            <p>{{this.createdAtFormatted}}</p>
+            <p>{{this.content}}</p>
+        </li>
+        {{/each}}
+    </ul>
+</div>
+
+<script src="/js/dashboard.js"></script>
+<script src="/js/login.js"></script>
+<script src="/js/logout.js"></script>

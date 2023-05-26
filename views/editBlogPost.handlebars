@@ -1,0 +1,27 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="navbar-nav">
+      <a class="navbar-brand" href="/"><h1>Content Cradle</h1></a>
+      <a class="nav-link" href="/dashboard"><p>Dashboard</p></a>
+      {{#if loggedIn}}
+      <a class="nav-link" id="logout"><p>Logout ({{userEmail}})</p></a>
+      {{else}}
+      <a class="nav-link" href="/login"><p>Login</p></a>
+      {{/if}}
+    </div>
+</nav>
+<div class="container-fluid" id="blog-post-container" data-blog-post-id={{blogPost.id}}>
+    <label class="form-label">Title</label>
+    <input class="form-control" id="title" type="text" name="name" value="{{blogPost.title}}">
+    <label class="form-label margin-top">Content</label>
+    <textarea rows="18" class="form-control" id="content" type="text" name="name">{{blogPost.content}}</textarea>
+    <div class="d-flex justify-content-between margin-top">
+        <button class="btn btn-success" id="save-changes-btn">Save Changes</button>
+        <button class="btn btn-danger" id="delete-blog-post-btn">Delete blog post</button>
+    </div>
+    <br>
+</div>
+
+<script src="/js/login.js"></script>
+<script src="/js/logout.js"></script>
+<script src="/js/editBlogPost.js"></script>
+

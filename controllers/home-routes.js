@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const {BlogPost} = require('../models');
 const {User} = require("../models")
+const dayjs = require('dayjs');
 
 router.get('/', async (req, res) => {
   try {
@@ -9,12 +10,14 @@ router.get('/', async (req, res) => {
     });
     
 
-    const blogPosts = blogPostData.map((blogPost) =>
-      blogPost.get({ plain: true })
-    );
+    const blogPosts = blogPostData.map((blogPost) => {
+      const plainBlogPosts = blogPost.get({ plain: true });
+      plainBlogPosts.createdAtFormatted = dayjs(plainBlogPosts.createdAt).format('MMMM D, YYYY h:mm:ss A');
+      return plainBlogPosts;
+  });
     console.log("blogPosts_________________", blogPosts)
 
-    res.render('home', {blogPosts: blogPosts, loggedIn: req.session.loggedIn});
+    res.render('home', {blogPosts: blogPosts, loggedIn: req.session.loggedIn, userEmail: req.session.email});
   } catch (err) {
     console.log(err);
     res.status(500).json(err);

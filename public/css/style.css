@@ -2,3 +2,44 @@ body {
     background-color: black;
     color: white;
 }
+
+.navbar-nav a {
+    color: white;
+}
+
+.padding-left {
+    padding-left: 52px;
+}
+
+h1 {
+    font-family: 'Dosis', sans-serif;
+}
+h2, h3, h4, button {
+    font-family: 'Rufina', serif;
+}
+
+p, li {
+    font-family: 'Prompt', sans-serif;
+}
+
+#leave-comment-container {
+    width: 48%;
+    margin: 0 auto;
+}
+
+.margin-top {
+    margin-top: 45px;
+}
+
+.margin-bottom {
+    margin-bottom: 45px;
+}
+
+.on-hover-blue:hover {
+    color: #0D6DFD;
+}
+
+/* #delete-blog-post-btn {
+    background-color: red;
+    color: white;
+} */

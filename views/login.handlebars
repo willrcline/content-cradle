@@ -1,3 +1,14 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="navbar-nav">
+      <a class="navbar-brand" href="/"><h1>Content Cradle</h1></a>
+      <a class="nav-link" href="/dashboard"><p>Dashboard</p></a>
+      {{#if loggedIn}}
+      <a class="nav-link" id="logout"><p>Logout ({{userEmail}})</p></a>
+      {{else}}
+      <a class="nav-link" href="/login"><p>Login</p></a>
+      {{/if}}
+    </div>
+</nav>
 <div class="row">
   <div class="col-md-6">
     <h2>Login</h2>

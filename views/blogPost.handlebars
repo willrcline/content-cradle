@@ -1,31 +1,40 @@
-<nav>
-    <ul>
-        <a href="/"><li>Home</li></a>
-        <a href="/dashboard"><li>Dashboard</li></a>
-        {{#if loggedIn}}
-        <a id="logout"><li>Logout</li></a>
-        {{else}}
-        <a href="/login"><li >Login</li#></a>
-        {{/if}}
-    </ul>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="navbar-nav">
+      <a class="navbar-brand" href="/"><h1>Content Cradle</h1></a>
+      <a class="nav-link" href="/dashboard"><p>Dashboard</p></a>
+      {{#if loggedIn}}
+      <a class="nav-link" id="logout"><p>Logout ({{userEmail}})</p></a>
+      {{else}}
+      <a class="nav-link" href="/login"><p>Login</p></a>
+      {{/if}}
+    </div>
 </nav>
-<div id="blog-post-container" data-blog-post-id={{blogPost.id}}>
+<div class="container-fluid" id="blog-post-container" data-blog-post-id={{blogPost.id}}>
     <h2>{{blogPost.title}}</h2>
-    <p>Written by {{blogPost.user.email}}</p>
+    <p>Written by {{blogPost.user.email}} at {{blogPost.createdAtFormatted}}</p>
     <p>{{blogPost.content}}</p>
     <br>
-    <input id="comment-input">
-    <button id="submit-comment">Leave a comment</button>
+    <form>
+        <div class="input-group mb-3" id="leave-comment-container">
+            <button class="btn btn-outline-secondary border-3 border border-primary rounded-start rounded-3" id="submit-comment" >Leave a comment</button>
+            <input class="form-control border-3 border border-primary rounded-end rounded-1" id="comment-input" placeholder="">
+        </div>
+    </form>
     <div id="add-comment-container"></div>
     <div id="comment-container">
+      <ul class="list-group">
         {{#each comments}}
-            <p id="comment">{{this.content}}</p>
-            <p>Commenter:{{this.user.email}}</p>
+         <li class="padding-left list-group-item list-group-item-dark border-3 border border-primary rounded-pill rounded-2">
+            <p class="fw-bold" id="comment">{{this.content}}</p>
+            <p>User: {{this.user.email}}  ({{this.createdAtFormatted}})</p>
             <br>
+            </li>
         {{/each}}
+        </ul>
     </div>
 </div>
-`
+
 <script src="/js/login.js"></script>
 <script src="/js/logout.js"></script>
 <script src="/js/blogPost.js"></script>
+
