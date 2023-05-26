@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const {BlogPost, Comment, User} = require('../models')
 const dayjs = require('dayjs');
+const withAuth = require("../utils/auth")
 
 
 router.get("/:id", async (req, res)=> {
@@ -49,10 +50,11 @@ router.get("/edit", async (req, res)=> {
     console.log("test____")
 })
 
-router.get("/edit/:id", async (req, res)=> {
+router.get("/edit/:id", withAuth, async (req, res)=> {
     console.log("/blog/edit_________")
     //user id should be passed into the data-user-id of the title of the post
     //ToDo If ! user id of this blog post == req.session.user_id {redirect to home}
+
     try {
         var blogPostData = await BlogPost.findByPk(req.params.id, {
         })
@@ -63,6 +65,10 @@ router.get("/edit/:id", async (req, res)=> {
         const blogPost = await blogPostData.get({ plain: true });
         blogPost.createdAtFormatted = dayjs(blogPost.createdAt).format('MMMM D, YYYY h:mm:ss A');
 
+        console.log("/blogpost/edit blog user_id, loggedIn user_id_______",blogPost.user_id, req.session.user_id)
+        if (blogPost.user_id != req.session.user_id){
+            res.redirect('/login');
+        }
 
         res.render("editBlogPost", {blogPost: blogPost, loggedIn: req.session.loggedIn, userEmail: req.session.email})
         return
