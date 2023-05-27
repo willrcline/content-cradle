@@ -1,6 +1,7 @@
 # Content Cradle: Blog Framework
 
 [Deployed here](https://content-cradle.herokuapp.com/)
+![Homepage](./images/home.png)
 
 ## Description
 Full stack blogging platform-- complete with account creation, blog creation, blog editing, commenting.
